@@ -27,15 +27,7 @@
 ##
 #macro ( image $img $alt $border $width $height $title )
   #if( $img )
-    #if ( ! ( $img.toLowerCase().startsWith("http:/") || $img.toLowerCase().startsWith("https:/") ||
-            $img.toLowerCase().startsWith("ftp:/") || $img.toLowerCase().startsWith("mailto:") ||
-            $img.toLowerCase().startsWith("file:/") || ($img.toLowerCase().indexOf("://") != -1) ) )
-      #set ( $imgSrc = $PathTool.calculateLink( $img, $relativePath ) )
-      #set ( $imgSrc = $imgSrc.replaceAll( '\\', '/' ) )
-      #set ( $imgSrc = ' src="' + $imgSrc + '"' )
-    #else
-      #set ( $imgSrc = ' src="' + $img + '"' )
-    #end
+    #set ( $imgSrc = ' src="' + $img + '"' )
     #if( $alt )
       #set ( $imgAlt = ' alt="' + $alt + '"' )
     #else
@@ -71,8 +63,6 @@
       #if ( ! ( $hrf.toLowerCase().startsWith("http:/") || $hrf.toLowerCase().startsWith("https:/") ||
         $hrf.toLowerCase().startsWith("ftp:/") || $hrf.toLowerCase().startsWith("mailto:") ||
         $hrf.toLowerCase().startsWith("file:/") || ($hrf.toLowerCase().indexOf("://") != -1) ) )
-        #set ( $hrf = $PathTool.calculateLink( $hrf, $relativePath ) )
-        #set ( $hrf = $hrf.replaceAll( '\\', '/' ) )
         #if ( ( $hrf == '' ) )
           #set ( $hrf = './' )
         #end
@@ -87,8 +77,6 @@
         #if ( ! ( $src.toLowerCase().startsWith("http:/") || $src.toLowerCase().startsWith("https:/") ||
                 $src.toLowerCase().startsWith("ftp:/") || $src.toLowerCase().startsWith("mailto:") ||
                 $src.toLowerCase().startsWith("file:/") || ($src.toLowerCase().indexOf("://") != -1) ) )
-            #set ( $src = $PathTool.calculateLink( $src, $relativePath ) )
-            #set ( $src = $src.replaceAll( '\\', '/' ) )
         #end
         #if ( $banner.alt )
             #set ( $alt = $banner.alt )
@@ -109,26 +97,16 @@
 #end
 ##
 #macro ( links $links )
-  #set ( $counter = 0 )
   #foreach( $item in $links )
-    #set ( $counter = $counter + 1 )
-    #set ( $currentItemHref = $PathTool.calculateLink( $item.href, $relativePath ) )
-    #set ( $currentItemHref = $currentItemHref.replaceAll( '\\', '/' ) )
     <li class="menu-item menu-item-type-post_type menu-item-object-page page_item">
-      #link( $currentItemHref $item.name $item.target $item.img $item.position $item.alt $item.border $item.width $item.height $item.title )
+      #link( $item.href $item.name $item.target $item.img $item.position $item.alt $item.border $item.width $item.height $item.title )
     </li>
   #end
 #end
 ##
 #macro ( breadcrumbs $breadcrumbs )
   #foreach( $item in $breadcrumbs )
-    #set ( $currentItemHref = $PathTool.calculateLink( $item.href, $relativePath ) )
-    #set ( $currentItemHref = $currentItemHref.replaceAll( '\\', '/' ) )
-    #if ( ( $currentItemHref == '' ) )
-      #set ( $currentItemHref = './' )
-    #end
-##
-      #link( $currentItemHref $item.name $item.target $item.img $item.position $item.alt $item.border $item.width $item.height $item.title )
+      #link( $item.href $item.name $item.target $item.img $item.position $item.alt $item.border $item.width $item.height $item.title )
       &gt;
   #end
   $shortTitle
@@ -137,8 +115,7 @@
 #macro ( displayTree $display $item )
   #if ( $item && $item.items && $item.items.size() > 0 )
     #foreach( $subitem in $item.items )
-      #set ( $subitemHref = $PathTool.calculateLink( $subitem.href, $relativePath ) )
-      #set ( $subitemHref = $subitemHref.replaceAll( '\\', '/' ) )
+      #set ( $subitemHref = $subitem.href )
 ##
       #if ( $alignedFileName == $subitemHref )
         #set ( $display = true )
@@ -151,8 +128,7 @@
 ##
 #macro ( menuItem $item )
   #set ( $collapse = "none" )
-  #set ( $currentItemHref = $PathTool.calculateLink( $item.href, $relativePath ) )
-  #set ( $currentItemHref = $currentItemHref.replaceAll( '\\', '/' ) )
+  #set ( $currentItemHref = $item.href )
 ##
   #if ( $item && $item.items && $item.items.size() > 0 )
     #if ( $item.collapse == false )
@@ -217,8 +193,7 @@
         #if ( ! ( $menu.img.toLowerCase().startsWith("http:/") || $menu.img.toLowerCase().startsWith("https:/") ||
                 $menu.img.toLowerCase().startsWith("ftp:/") || $menu.img.toLowerCase().startsWith("mailto:") ||
                 $menu.img.toLowerCase().startsWith("file:/") || ($menu.img.toLowerCase().indexOf("://") != -1) ) )
-          #set ( $src = $PathTool.calculateLink( $menu.img, $relativePath ) )
-          #set ( $src = $src.replaceAll( '\\', '/' ) )
+          #set ( $src = $menu.img )
           #set ( $src = ' src="' + $src + '"' )
         #else
           #set ( $src = ' src="' + $menu.img + '"' )
@@ -395,8 +370,7 @@
   #if( $poweredBy )
     #foreach ($item in $poweredBy)
       #if( $item.href )
-        #set ( $href = $PathTool.calculateLink( $item.href, $relativePath ) )
-        #set ( $href = $href.replaceAll( '\\', '/' ) )
+        #set ( $href = $item.href )
       #else
         #set ( $href="http://maven.apache.org/" )
       #end
@@ -414,12 +388,6 @@
         #set ( $img = "images/logos/maven-feather.png" )
       #end
 ##
-      #if ( ! ( $img.toLowerCase().startsWith("http:/") || $img.toLowerCase().startsWith("https:/") ||
-            $img.toLowerCase().startsWith("ftp:/") || $img.toLowerCase().startsWith("mailto:") ||
-            $img.toLowerCase().startsWith("file:/") || ($img.toLowerCase().indexOf("://") != -1) ) )
-        #set ( $img = $PathTool.calculateLink( $img, $relativePath ) )
-        #set ( $img = $img.replaceAll( '\\', '/' ) )
-      #end
 ##
       #if( $item.alt )
         #set ( $alt = ' alt="' + $item.alt + '"' )
