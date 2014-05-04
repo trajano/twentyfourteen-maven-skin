@@ -28,7 +28,7 @@
         <site>
             <id>gh-pages</id>
             <name>Trajano Github Pages</name>
-            <url>git:ssh://git@github.com/trajano/${project.artifactId}.git?gh-pages#</url>
+            <url>github:http://site.trajano.net/${project.artifactId}/</url>
         </site>
     </distributionManagement>
     <build>
@@ -52,5 +52,38 @@
                 </plugin>
             </plugins>
         </pluginManagement>
+        <plugins>
+            <plugin>
+                <artifactId>maven-invoker-plugin</artifactId>
+                <version>1.8</version>
+                <executions>
+                    <execution>
+                        <id>integration-test</id>
+                        <goals>
+                            <goal>install</goal>
+                            <goal>integration-test</goal>
+                            <goal>verify</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <projectsDirectory>src/it</projectsDirectory>
+                    <cloneProjectsTo>${project.build.directory}/it</cloneProjectsTo>
+                    <pomIncludes>
+                        <pomInclude>*/pom.xml</pomInclude>
+                    </pomIncludes>
+                    <goals>
+                        <goal>site</goal>
+                    </goals>
+                </configuration>
+            </plugin>
+        </plugins>
+        <extensions>
+            <extension>
+                <groupId>net.trajano.wagon</groupId>
+                <artifactId>wagon-git</artifactId>
+                <version>2.0.0</version>
+            </extension>
+        </extensions>
     </build>
 </project>
