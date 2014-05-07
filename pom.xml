@@ -8,7 +8,7 @@
     </parent>
     <groupId>net.trajano.maven.skins</groupId>
     <artifactId>twentyfourteen-maven-skin</artifactId>
-    <version>1.0.0-SNAPSHOT</version>
+    <version>1.0.0</version>
     <name>Twentyfourteen Maven Skin</name>
     <description>This is a port of the WordPress Twenty Fourteen theme to Maven.</description>
     <url>http://site.trajano.net/${project.artifactId}</url>
@@ -21,7 +21,7 @@
     <scm>
         <connection>scm:git:https://github.com/trajano/${project.artifactId}</connection>
         <developerConnection>scm:git:ssh://git@github.com/trajano/${project.artifactId}.git</developerConnection>
-        <tag>HEAD</tag>
+        <tag>twentyfourteen-maven-skin-1.0.0</tag>
         <url>http://github.com/trajano/${project.artifactId}</url>
     </scm>
     <distributionManagement>
