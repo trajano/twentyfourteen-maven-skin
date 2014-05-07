@@ -1,14 +1,14 @@
  ------
- ${skinName} test
+ ${project.name} test
  ------
  Hervé Boutemy
  ------
  2011-10-15
  ------
 
-${skinName} test
+${project.name} test
 
- This is a test for ${skinName}.
+ This is a test for ${project.name}.
 
 * Usage
 
@@ -19,9 +19,9 @@ ${skinName} test
 <project name="xxx">
   ...
   <skin>
-    <groupId>${skinGroupId}</groupId>
-    <artifactId>${skinArtifactId}</artifactId>
-    <version>${skinVersion}</version>
+    <groupId>${project.groupId}</groupId>
+    <artifactId>${project.artifactId}</artifactId>
+    <version>${project.version}</version>
   </skin>
   ...
 </project>
@@ -118,9 +118,9 @@ Table caption
 
   <Italic> font. <<Bold>> font. <<<Monospaced>>> font.
 
-  {Anchor}. Link to {{Anchor}}. Link to {{http://www.pixware.fr}}. 
+  {Anchor}. Link to {{Anchor}}. Link to {{http://www.trajano.net/}}. 
   Link to {{{Anchor}showing alternate text}}.
-  Link to {{{http://www.pixware.fr}Pixware home page}}.
+  Link to {{{http://www.trajano.net/}Archimedes Trajano's page}}.
 
   Force line\
   break.
