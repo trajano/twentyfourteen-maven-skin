@@ -47,6 +47,16 @@
                     <version>2.6</version>
                 </plugin>
                 <plugin>
+                    <artifactId>maven-site-plugin</artifactId>
+                    <dependencies>
+                        <dependency>
+                            <groupId>net.trajano.maven.doxia</groupId>
+                            <artifactId>doxia-integration-tools</artifactId>
+                            <version>2.0.2</version>
+                        </dependency>
+                    </dependencies>
+                </plugin>
+                <plugin>
                     <artifactId>maven-surefire-plugin</artifactId>
                     <version>2.16</version>
                 </plugin>
