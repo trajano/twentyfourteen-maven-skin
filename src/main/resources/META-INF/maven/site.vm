@@ -128,7 +128,11 @@
 ##
 #macro ( menuItem $item )
   #set ( $collapse = "none" )
-  #set ( $currentItemHref = $item.href )
+  #if ( $item.href.startsWith("/") )
+    #set ( $currentItemHref = $item.href.substring(1) )
+  #else
+    #set ( $currentItemHref = $item.href )
+  #end
 ##
   #if ( $item && $item.items && $item.items.size() > 0 )
     #if ( $item.collapse == false )
