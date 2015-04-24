@@ -4,7 +4,7 @@
     <parent>
         <groupId>net.trajano</groupId>
         <artifactId>trajano</artifactId>
-        <version>8</version>
+        <version>11.1</version>
     </parent>
     <groupId>net.trajano.maven.skins</groupId>
     <artifactId>twentyfourteen-maven-skin</artifactId>
